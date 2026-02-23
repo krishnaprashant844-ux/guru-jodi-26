@@ -38,14 +38,17 @@ jobs:
           pip3 install --upgrade pip
           pip3 install buildozer cython
 
-      - name: Set Android environment
+      # 🔥 STEP 1: Initialize buildozer (this installs SDK)
+      - name: Initialize Buildozer
         run: |
-          echo "ANDROID_HOME=$HOME/.buildozer/android/platform/android-sdk" >> $GITHUB_ENV
+          buildozer android update || true
 
+      # 🔥 STEP 2: Accept licenses AFTER SDK install
       - name: Accept Android Licenses
         run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
+      # 🔥 STEP 3: Build APK
       - name: Build APK
         run: |
           buildozer -v android debug
