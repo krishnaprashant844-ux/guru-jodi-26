@@ -7,7 +7,7 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,ttf
 version = 0.1
 # Added requirements for your Firebase and Kivy code
-requirements = python3,kivy==2.3.0,requests,urllib3,openssl,certifi
+requirements = python3,kivy==2.3.0,requests,certifi,urllib3
 orientation = portrait
 fullscreen = 0
 # Permission needed for Firebase database
@@ -22,3 +22,4 @@ android.allow_backup = True
 [buildozer]
 log_level = 2
 warn_on_root = 1
+android.accept_sdk_license = True
