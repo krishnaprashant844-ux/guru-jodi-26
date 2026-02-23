@@ -12,9 +12,11 @@ orientation = portrait
 fullscreen = 0
 # Permission needed for Firebase database
 android.permissions = INTERNET
-android.api = 33
+android.api = 30
 android.minapi = 21
-android.ndk_api = 21
+android.ndk = 25b
+android.sdk = 30
+android.build_tools = 30.0.3
 android.private_storage = True
 android.archs = arm64-v8a, armeabi-v7a
 android.allow_backup = True
