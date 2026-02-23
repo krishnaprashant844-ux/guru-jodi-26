@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
@@ -37,10 +36,6 @@ jobs:
         run: |
           pip3 install --upgrade pip
           pip3 install buildozer cython
-
-      - name: Clean buildozer
-        run: |
-          buildozer android clean
 
       - name: Build APK
         run: |
