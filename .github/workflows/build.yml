@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
@@ -37,10 +38,9 @@ jobs:
           pip3 install --upgrade pip
           pip3 install buildozer cython
 
-      # 🔥 Force license accept BEFORE buildozer uses SDK
-      - name: Accept licenses globally
+      - name: Clean buildozer
         run: |
-          yes | sudo sdkmanager --licenses || true
+          buildozer android clean
 
       - name: Build APK
         run: |
