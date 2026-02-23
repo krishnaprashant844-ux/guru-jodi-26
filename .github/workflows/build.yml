@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
@@ -38,17 +37,11 @@ jobs:
           pip3 install --upgrade pip
           pip3 install buildozer cython
 
-      # 🔥 STEP 1: Initialize buildozer (this installs SDK)
-      - name: Initialize Buildozer
+      # 🔥 Force license accept BEFORE buildozer uses SDK
+      - name: Accept licenses globally
         run: |
-          buildozer android update || true
+          yes | sudo sdkmanager --licenses || true
 
-      # 🔥 STEP 2: Accept licenses AFTER SDK install
-      - name: Accept Android Licenses
-        run: |
-          yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
-
-      # 🔥 STEP 3: Build APK
       - name: Build APK
         run: |
           buildozer -v android debug
