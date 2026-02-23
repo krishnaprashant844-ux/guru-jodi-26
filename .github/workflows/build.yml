@@ -15,8 +15,8 @@ jobs:
 
       - name: Install system dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
+          sudo apt update
+          sudo apt install -y \
           python3-pip \
           build-essential \
           git \
@@ -34,18 +34,18 @@ jobs:
           libffi-dev \
           libssl-dev
 
-      - name: Install Python tools
+      - name: Install Buildozer
         run: |
-          python3 -m pip install --upgrade pip
+          pip install --upgrade pip
           pip install buildozer cython
 
-      - name: Setup Android (IMPORTANT)
+      - name: Install Android SDK automatically
         run: |
-          yes | buildozer android update
+          buildozer android update
 
       - name: Build APK
         run: |
-          buildozer -v android debug
+          buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
