@@ -72,9 +72,7 @@ jobs:
 
       - name: Build APK with Buildozer
         env:
-          ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
-          ANDROID_HOME: ${{ env.ANDROID_HOME }}
-          JAVA_HOME: ${{ env.JAVA_HOME }}
+         "$SDKMAN" --sdk_root="$ANDROID_SDK_ROOT" "platform-tools" "platforms;android-33" "build-tools;33.0.2"
         run: |
           # optional: show buildozer version
           ~/.local/bin/buildozer --version || true
